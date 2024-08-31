@@ -1,14 +1,15 @@
+import { FC } from 'react'
 import s from './Loader.module.css'
 import {FallingLines} from 'react-loader-spinner'
 
-const Loader = () => {
+const Loader: FC = () => {
     return (
         <div className={s.loading}>
             <FallingLines
             color="#ffffff"
             width="65"
             visible={true}
-            ariaLabel="falling-circles-loading"
+            aria-label="falling-circles-loading"
             />
         </div>
     )

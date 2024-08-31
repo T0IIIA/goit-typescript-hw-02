@@ -1,8 +1,11 @@
+import { FC } from 'react'
 import ImageCard from '../ImageCard/ImageCard'
 import s from './ImageGallery.module.css'
+import { ImageGalleryProps } from './ImageGallery.type'
 
-const ImageGallery = ({ items, onOpen }) => {
+const ImageGallery: FC<ImageGalleryProps> = ({ items, onOpen }) => {
 
+  
   return (
     <ul className={s.list}>
         {items.map(item => (

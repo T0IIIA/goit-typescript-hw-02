@@ -10,20 +10,23 @@ import ImageModal from './ImageModal/ImageModal'
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Hit } from './App.types'
 
 
 // ---------------------------
 function App() {
-    const [ searchValue, setSearchValue ] = useState('')
-    const [ hits, setHits ] = useState([])
-    const [isLoading, setIsLoading] = useState(false)
-    const [isError, setIsError] = useState(false)
-    const [page, setPage] = useState(1)
-    const [totalPages, setTotalPages] = useState(0)
-    const [modalIsOpen, setModalIsOpen] = useState(false);
-    const [modalImage, setModalImage] = useState('')
+    const [searchValue, setSearchValue] = useState<string>('')
+    const [hits, setHits] = useState<Hit[]>([])
+    const [isLoading, setIsLoading] = useState<boolean>(false)
+    const [isError, setIsError] = useState<boolean>(false)
+    const [page, setPage] = useState<number>(1)
+    const [totalPages, setTotalPages] = useState<number>(0)
+    const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
+    const [modalImage, setModalImage] = useState<string>('')
 
 
+
+    
 // ---------------------------
     const notify = () => toast('Enter text for search pls 🙏', {
         autoClose: 2000,
@@ -38,11 +41,11 @@ function App() {
         }
     })
 
-    const loadMoreBtn = () => {
+    const loadMoreBtn = ():void => {
         setPage(prev => prev + 1)
     }
 
-    const handleSetQuery = (query) => {
+    const handleSetQuery = (query: string): void => {
         if(searchValue === query){
             return
         }
@@ -51,12 +54,12 @@ function App() {
       setSearchValue(query)
     }
 
-    const openModal = (query) => {
+    const openModal = (query: string): void => {
       setModalIsOpen(true)
       setModalImage(query)
     }
 
-    const closeModal = () => {
+    const closeModal = (): void => {
       setModalIsOpen(false)
       setModalImage('')
     }
@@ -69,18 +72,19 @@ function App() {
             return
         }
 
-        const getData = async () => {
-            try {
-                setIsError(false)
-                setIsLoading(true)
-                const res = await apiImages(searchValue, page)
-                setHits(prev => [...prev, ...res.results])
-                setTotalPages(res.total_pages)
-            } catch(err) {
-                setIsError(true)
-            } finally {
-                setIsLoading(false)
-            }
+        const getData = async (): Promise<void> => {
+          try {
+            setIsError(false)
+            setIsLoading(true)
+            const res = await apiImages(searchValue, page)
+            
+            setHits((prev) => [...prev, ...res.results])
+            setTotalPages(res.total_pages)
+          } catch (err) {
+            setIsError(true)
+          } finally {
+            setIsLoading(false)
+          }
         }
         getData()
     }, [searchValue, page])
