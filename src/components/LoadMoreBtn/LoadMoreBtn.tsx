@@ -1,3 +1,4 @@
+
 import { FC } from 'react'
 import s from './LoadMoreBtn.module.css'
 import { LoadMoreProps } from './LoadMoreBtn.type'

@@ -1,3 +1,4 @@
+
 import { ReactElement } from 'react'
 import s from './ImageCard.module.css'
 import { ImageCardProps } from './ImageCard.type'
@@ -12,6 +13,7 @@ const ImageCard = ({ item, onOpen }: ImageCardProps): ReactElement => {
         className={s.image}
       />
     </div>
+
   )
 }
 

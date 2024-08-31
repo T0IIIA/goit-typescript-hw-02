@@ -1,4 +1,5 @@
 import s from './ImageModal.module.css'
+
 import Modal from 'react-modal'
 import { ImageModalProps } from './ImageModal.type'
 import { FC } from 'react'
